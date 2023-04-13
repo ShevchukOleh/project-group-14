@@ -10,26 +10,13 @@
     display: flex;
 }
 
-.nav__search {
-    display: none;
-}
-
-
-
-
-
-
 .nav__item {
     padding-top: 11px;
     margin-right: 8px;
 }
 
-
 .nav__link {
 
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
     font-size: 12px;
     line-height: 14px;
     color: black;
@@ -53,34 +40,95 @@
 }
 
 .nav__input {
+
     border-radius: 100px;
     width: 252px;
     height: 42px;
     margin-right: 8px;
-    margin-bottom: 312px;
+
     padding-left: 15px;
 
     @media screen and (min-width: 768px) {
-        margin-bottom: 105px;
+
         width: 187px;
 
     }
 
+
+}
+
+.nav__form {
+
+    position: relative;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+        position: relative;
+        margin-bottom: 105px;
+
+    }
+
     @media screen and (min-width: 1280px) {
-        margin-bottom: 151px;
+
         width: 187px;
 
     }
 }
 
-.logo {}
+.nav__form-mobile {
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+}
+
+.nav__search {
+    display: none;
+}
+
+.nav__icon {
+    position: absolute;
+    // top: 50%;
+    // transform: translate(0, -50%);
+    // fill: green;
+    width: 30px;
+    height: 16px;
+    // background-color: red;
+}
+
+.logo {
+    margin-top: 312px;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 105px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-top: 151px;
+    }
+}
+
+.logo__link {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.logo__icon {
+
+    @media screen and (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 59px;
+        height: 59px;
+    }
+}
 
 .logo__text {
-
-
-
-
-
     font-size: 32px;
     line-height: 38px;
     color: white;
@@ -96,20 +144,44 @@
         font-size: 64px;
         line-height: 75px;
     }
-
 }
 
 
-.nav__form {
-    @media screen and (max-width: 768px) {
-        display: none;
+.watched__list {
+    display: flex;
+    margin-left: auto;
 
+    @media screen and (max-width: 767px) {
+        display: none;
     }
 }
 
-.nav__form-mobile {
+.watched__link {
+    font-size: 12px;
+    line-height: 14px;
+    color: #B92F2C;
+    background-color: #ffffff;
+    border-radius: 100px;
+    padding: 10px 22px;
+
+    border: 2px solid black;
+
+
+
+
+}
+
+.watched__link:is(:hover, :focus) {
+    background-color: #B92F2C;
+    color: #ffffff;
+}
+
+.watched__list-mobile {
+    justify-content: center;
+    display: flex;
+    margin-top: 16px;
+
     @media screen and (min-width: 768px) {
         display: none;
-
     }
 }
