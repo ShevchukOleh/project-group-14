@@ -28,7 +28,10 @@ container.addEventListener('click', handleTuiContainerClick);
 function handleTuiContainerClick(event) {
     pageNumber = instance.getCurrentPage();
     console.log(pageNumber);
-    fetchPopularMovies(pageNumber);
+    fetchPopularMovies(pageNumber).then(data => {
+        const { page, results, total_pages, total_results } = data;
+        console.log(data);
+    })
 }
 
 function fetchPopularMovies(pageNumber) {
