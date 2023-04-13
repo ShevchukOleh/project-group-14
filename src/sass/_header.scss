@@ -1,0 +1,134 @@
+.header {
+    background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+        url(/src/images/abstract-background-mobile1x.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-mobile2x.jpg);
+    }
+
+
+
+    @media screen and (min-width: 768px) {
+
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-desktop2x.jpg);
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+                url(/src/images/abstract-background-desktop2x.jpg);
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-desktop1x.jpg);
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+                url(/src/images/abstract-background-desktop2x.jpg);
+        }
+
+    }
+}
+
+
+.nav {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.nav__list {
+    display: flex;
+}
+
+.nav__search {
+    display: none;
+}
+
+
+
+
+
+
+.nav__item {
+    padding-top: 11px;
+    margin-right: 8px;
+}
+
+
+.nav__link {
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: black;
+    background-color: #ffffff;
+    border-radius: 100px;
+    padding: 10px 22px;
+
+    border: 2px solid black;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 151px;
+        width: 187px;
+        padding: 13px 32px;
+
+    }
+}
+
+.nav__link:is(:hover, :focus) {
+    background-color: black;
+    color: white;
+}
+
+.nav__input {
+    border-radius: 100px;
+    width: 252px;
+    height: 42px;
+    margin-right: 8px;
+    margin-bottom: 312px;
+    padding-left: 15px;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 151px;
+        width: 187px;
+
+    }
+}
+
+.logo {}
+
+.logo__text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 75px;
+    color: white;
+}
+
+
+.nav__form {
+    @media screen and (max-width: 767px) {
+        display: none;
+
+    }
+}
+
+.nav__form-mobile {
+    @media screen and (min-width: 768px) {
+        display: none;
+
+    }
+}
