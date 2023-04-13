@@ -1,23 +1,53 @@
 .container {
-    margin: 0 auto;
-    padding: 20px;
-}
+    // height: 460px;
+    border-radius: 15px;
+    margin: 32px auto;
+    padding: 14px;
 
-@media screen and (min-width: 320px) {
-    .container {
-        // width: 320px;
+    background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+        url(/src/images/abstract-background-mobile1x.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-mobile2x.jpg);
     }
-}
 
-@media screen and (min-width: 768px) {
-    .container {
+    @media screen and (min-width: 320px) {
+        width: 320px;
+
+    }
+
+    @media screen and (min-width: 768px) {
         width: 768px;
-        padding: 32px;
-    }
-}
+        padding: 16px;
+        // height: 222px;
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-tablet1x.jpg);
 
-@media screen and (min-width: 1280px) {
-    .container {
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+                url(/src/images/abstract-background-tablet2x.jpg);
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
         width: 1280px;
+        background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+            url(/src/images/abstract-background-desktop1x.jpg);
+
+        @media (min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi),
+        (min-resolution: 2dppx) {
+            background-image: linear-gradient(273.67deg, rgba(0, 0, 0, 0.49) -2.09%, rgba(0, 0, 0, 0) 99.83%),
+                url(/src/images/abstract-background-desktop2x.jpg);
+        }
+
     }
 }
