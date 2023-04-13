@@ -12,7 +12,11 @@
 
 .nav__item {
     padding-top: 11px;
-    margin-right: 8px;
+    margin-left: 4px;
+
+    @media screen and (min-width: 1200px) {
+        margin-left: 8px;
+    }
 }
 
 .nav__link {
@@ -34,6 +38,11 @@
     }
 }
 
+.nav__link-active{
+    color: #fff;
+    background-color: black;
+}
+
 .nav__link:is(:hover, :focus) {
     background-color: black;
     color: white;
@@ -44,7 +53,6 @@
     border-radius: 100px;
     width: 252px;
     height: 42px;
-    margin-right: 8px;
 
     padding-left: 15px;
 
@@ -112,7 +120,17 @@
 .logo__link {
     display: flex;
     align-items: flex-end;
-    gap: 16px;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+        justify-content: flex-start;
+    }
+
+    @media screen and (min-width: 1280px) {
+        gap: 16px;
+    }
 }
 
 .logo__icon {
