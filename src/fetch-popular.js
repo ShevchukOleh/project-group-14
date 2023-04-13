@@ -65,7 +65,7 @@ async function renderGallery(movies) {
   const genres = await fetchGenres();
 
   return movies
-    .map(({ genre_ids, poster_path, title, original_title, release_date }) => {
+    .map(({ genre_ids, poster_path, title, original_title, release_date } = {}) => {
       const checkGenres = genre_ids ? getGenres(genre_ids, genres) : 'Unknown';
 
       return `<div class="movie-card">
