@@ -33,6 +33,7 @@ container.addEventListener('click', handleTuiContainerClick);
 
 function handleTuiContainerClick(event) {
   pageNumber = instance.getCurrentPage();
+
   fetchPopularMovies(pageNumber)
     .then(data => {
       const { page, results, total_pages, total_results } = data;
@@ -65,10 +66,20 @@ async function renderGallery(movies) {
   const genres = await fetchGenres();
 
   return movies
-    .map(({ genre_ids, poster_path, title, original_title, release_date } = {}) => {
-      const checkGenres = genre_ids ? getGenres(genre_ids, genres) : 'Unknown';
+    .map(
+      ({
+        genre_ids,
+        poster_path,
+        title,
+        original_title,
+        release_date,
+      } = {}) => {
+        const checkGenres = genre_ids
+          ? getGenres(genre_ids, genres)
+          : 'Unknown';
+        const releaseDate = release_date ? release_date.slice(0, 4) : 'Unknoun';
 
-      return `<div class="movie-card">
+        return `<div class="movie-card">
       <img class="movie-poster"
         src="${BASE_IMAGE_URL}${IMAGE_SIZE}${poster_path}" 
         alt="${title}" 
@@ -78,9 +89,10 @@ async function renderGallery(movies) {
       ${original_title}</p>
       <p class="movie-genres">${checkGenres}</p>
       <p class="movie-date">
-      ${release_date.slice(0, 4)}</p>
+      ${releaseDate}</p>
       </div>`;
-    })
+      }
+    )
     .join('');
 }
 
