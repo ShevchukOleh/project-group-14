@@ -21,7 +21,7 @@ const IMAGE_SIZE = 'w200';
 fetchPopularMovies()
   .then(data => {
     const { page, results, total_pages, total_results } = data;
-    
+
     return renderGallery(results);
   })
   .then(res => {
@@ -36,8 +36,11 @@ function handleTuiContainerClick(event) {
   fetchPopularMovies(pageNumber)
     .then(data => {
       const { page, results, total_pages, total_results } = data;
-    
-      renderGallery(results);
+
+      return renderGallery(results);
+    })
+    .then(res => {
+      return (galleryEl.innerHTML = res);
     })
     .catch(console.log);
 }
