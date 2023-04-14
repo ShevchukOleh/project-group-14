@@ -23,10 +23,9 @@ const instance = new Pagination(container, {
 
 let pageNumber = 1;
 
-fetchPopularMovies(API_KEY, BASE_URL)
+fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
   .then(data => {
     const { page, results, total_pages } = data;
-
     return renderGallery(results);
   })
   .then(res => {
@@ -39,10 +38,10 @@ container.addEventListener('click', handleTuiContainerClick);
 function handleTuiContainerClick(event) {
   pageNumber = instance.getCurrentPage();
   setScrollToUp();
+
   fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
     .then(data => {
       const { page, results, total_pages } = data;
-
       return renderGallery(results);
     })
     .then(res => {
