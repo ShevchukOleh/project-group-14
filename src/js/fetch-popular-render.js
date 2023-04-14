@@ -11,7 +11,7 @@ const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
 const IMAGE_SIZE = 'w200';
 
-const galleryEl = document.querySelector('.gallery');
+const moviesEl = document.querySelector('.films');
 const container = document.getElementById('tui-pagination-container');
 
 const instance = new Pagination(container, {
@@ -29,7 +29,7 @@ fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
     return renderGallery(results);
   })
   .then(res => {
-    return (galleryEl.innerHTML = res);
+    return (moviesEl.innerHTML = res);
   })
   .catch(console.log);
 
@@ -45,7 +45,7 @@ function handleTuiContainerClick(event) {
       return renderGallery(results);
     })
     .then(res => {
-      return (galleryEl.innerHTML = res);
+      return (moviesEl.innerHTML = res);
     })
     .catch(console.log);
 }
