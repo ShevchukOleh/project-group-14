@@ -1,7 +1,7 @@
 import * as basicLightbox from 'basiclightbox';
 import '../sass/_modall.scss';
 
-// import templateFunction from './template-modal.hbs';
+import templateFunction from './templates/template-modal.hbs';
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
 const pEl = document.querySelector('.modal__about-text');
