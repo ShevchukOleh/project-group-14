@@ -9,7 +9,6 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
-const IMAGE_SIZE = 'w200';
 
 const moviesEl = document.querySelector('.films');
 const container = document.getElementById('tui-pagination-container');
@@ -67,7 +66,7 @@ async function renderGallery(movies) {
           : 'Unknown';
         const releaseYear = release_date ? release_date.slice(0, 4) : 'Unknoun';
         const poster = poster_path
-          ? `${BASE_IMAGE_URL}${IMAGE_SIZE}${poster_path}`
+          ? `${BASE_IMAGE_URL}w500${poster_path}`
           : NO_POSTER;
 
         return `<li class="films__item" >
