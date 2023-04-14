@@ -1,7 +1,7 @@
 import * as basicLightbox from 'basiclightbox';
-import '../sass/_modal.scss';
+import '../sass/_modall.scss';
 
-import templateFunction from './template-modal.hbs';
+// import templateFunction from './template-modal.hbs';
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
 const btnEl = document.querySelector('.modal__btn-mr');

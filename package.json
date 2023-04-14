@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "basiclightbox": "^5.0.4",
+    "electron-rebuild": "^3.2.9",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
