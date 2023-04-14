@@ -1,3 +1,6 @@
+.basicLightbox__placeholder {
+  background-color: #fff;
+}
 button {
   margin: 0;
   padding: 0;
@@ -7,9 +10,7 @@ button {
   position: relative;
   padding: 48px 20px 40px 20px;
   min-width: 280px;
-  overflow: scroll;
-
-  outline: solid 1px blue;
+  height: 90vh;
 }
 
 .modal__picture {
@@ -143,7 +144,6 @@ button {
     padding: 40px 72px 64px 40px;
     width: 704px;
     height: 552px;
-    overflow: hidden;
   }
   .modal__picture {
     min-width: 264px;
@@ -199,5 +199,11 @@ button {
   }
   .modal__btn-mr {
     margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal {
+    overflow: scroll;
   }
 }
