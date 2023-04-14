@@ -1,6 +1,15 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import fetchPopularMovies from './fetch-popular';
+import getGenres from './get-genres';
+import setScrollToUp from './set-scroll';
+import fetchGenres from './fetch-genres';
+
+const BASE_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
+const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
+const IMAGE_SIZE = 'w200';
 
 const galleryEl = document.querySelector('.gallery');
 const container = document.getElementById('tui-pagination-container');
@@ -13,12 +22,6 @@ const instance = new Pagination(container, {
 });
 
 let pageNumber = 1;
-
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
-const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
-const IMAGE_SIZE = 'w200';
 
 fetchPopularMovies(API_KEY, BASE_URL)
   .then(data => {
@@ -48,10 +51,8 @@ function handleTuiContainerClick(event) {
     .catch(console.log);
 }
 
-
-
 async function renderGallery(movies) {
-  const genres = await fetchGenres();
+  const genres = await fetchGenres(API_KEY, BASE_URL);
 
   return movies
     .map(
@@ -87,45 +88,8 @@ async function renderGallery(movies) {
     .join('');
 }
 
-function fetchGenres() {
-  const searchParams = new URLSearchParams({
-    api_key: `${API_KEY}`,
-    language: 'en-US',
-  });
 
-  const url = `${BASE_URL}genre/movie/list?${searchParams}`;
-  return fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    })
-    .then(data => data.genres);
-}
 
-function getGenres(arrayId, genres) {
-  const arr = [];
 
-  for (const value of genres) {
-    if (arrayId === 'N/A' || arrayId.length === 0) {
-      arr.push('Other');
-      break;
-    } else if (arrayId.includes(value.id)) {
-      arr.push(value.name);
-    }
-  }
 
-  if (arr.length > 2) {
-    arr.splice(2, arr.length - 2, 'Other');
-  }
 
-  return arr.join(', ');
-}
-
-function setScrollToUp() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
