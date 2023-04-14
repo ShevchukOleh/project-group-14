@@ -65,23 +65,25 @@ async function renderGallery(movies) {
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
           : 'Unknown';
-        const releaseDate = release_date ? release_date.slice(0, 4) : 'Unknoun';
+        const releaseYear = release_date ? release_date.slice(0, 4) : 'Unknoun';
         const poster = poster_path
           ? `${BASE_IMAGE_URL}${IMAGE_SIZE}${poster_path}`
           : NO_POSTER;
 
-        return `<div class="movie-card">
-      <img class="movie-poster"
-        src="${poster}" 
-        alt="${title}" 
-        loading="lazy" />
-      <div class="movie-info">
-      <p class="movie-title">
-      ${original_title}</p>
-      <p class="movie-genres">${checkGenres}</p>
-      <p class="movie-date">
-      ${releaseDate}</p>
-      </div>`;
+        return `<li class="films__item" >
+                  <div class="films__img">
+                    <img src=${poster} alt='Poster ${original_title}' loading='lazy' />
+                  </div>
+                  <div class="films__description">
+                    <p class="films__title">
+                      <b>${title.toUpperCase()}</b>
+                    </p>
+                    <div class="films__meta">
+                      <p class="films__genres">${checkGenres}</p>
+                      <p class="films__data">${releaseYear}</p>
+                    </div>
+                  </div>
+                </li>`;
       }
     )
     .join('');
