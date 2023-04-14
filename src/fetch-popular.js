@@ -21,7 +21,7 @@ const IMAGE_SIZE = 'w200';
 
 fetchPopularMovies()
   .then(data => {
-    const { page, results, total_pages, total_results } = data;
+    const { page, results, total_pages } = data;
 
     return renderGallery(results);
   })
@@ -34,10 +34,10 @@ container.addEventListener('click', handleTuiContainerClick);
 
 function handleTuiContainerClick(event) {
   pageNumber = instance.getCurrentPage();
-
+  setScrollToUp();
   fetchPopularMovies(pageNumber)
     .then(data => {
-      const { page, results, total_pages, total_results } = data;
+      const { page, results, total_pages } = data;
 
       return renderGallery(results);
     })
@@ -51,9 +51,10 @@ function fetchPopularMovies(pageNumber) {
   const searchParams = new URLSearchParams({
     api_key: `${API_KEY}`,
     page: `${pageNumber}`,
+    language: 'en-US',
   });
 
-  const url = `${BASE_URL}movie/popular?${searchParams}`;
+  const url = `${BASE_URL}/movie/popular?${searchParams}`;
 
   return fetch(url).then(response => {
     if (!response.ok) {
@@ -78,13 +79,11 @@ async function renderGallery(movies) {
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
           : 'Unknown';
-        const releaseDate = release_date
-          ? release_date.slice(0, 4)
-          : 'Unknoun';
+        const releaseDate = release_date ? release_date.slice(0, 4) : 'Unknoun';
         const poster = poster_path
           ? `${BASE_IMAGE_URL}${IMAGE_SIZE}${poster_path}`
           : NO_POSTER;
-        
+
         return `<div class="movie-card">
       <img class="movie-poster"
         src="${poster}" 
@@ -136,4 +135,11 @@ function getGenres(arrayId, genres) {
   }
 
   return arr.join(', ');
+}
+
+function setScrollToUp() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
