@@ -4,13 +4,12 @@ import '../sass/_modal.scss';
 import templateFunction from './template-modal.hbs';
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
-const btnEl = document.querySelector('.modal__btn-mr');
-btnEl.addEventListener('click', largeMovieItem);
+const pEl = document.querySelector('.modal__about-text');
+pEl.addEventListener('click', largeMovieItem);
 
 function largeMovieItem(event) {
-  console.log(event.target);
   if (
-    event.target.nodeName != 'BUTTON'
+    event.target.nodeName != 'P'
     // event.target.nodeName != 'A' &&
     // event.target.nodeName != 'IMG' &&
     // event.target.nodeName != 'P' &&
@@ -33,11 +32,9 @@ function largeMovieItem(event) {
         origin_title: original_title,
         about: overview,
       };
-      console.log('templateFunction(info): ', templateFunction(info));
       const render = templateFunction(info);
       const instance = basicLightbox.create(render);
 
-      console.log('instance: ', instance);
       instance.show();
     })
     .catch(er => console.log(er));
