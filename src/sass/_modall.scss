@@ -1,6 +1,8 @@
 .basicLightbox__placeholder {
   background-color: #fff;
+  overflow: scroll;
 }
+
 button {
   margin: 0;
   padding: 0;
@@ -17,6 +19,7 @@ button {
   min-width: 100%;
   height: auto;
 }
+
 .modal__container-picture {
   margin-bottom: 20px;
 }
@@ -27,6 +30,7 @@ button {
   font-size: 20px;
   line-height: 1.15;
 }
+
 .modal__char {
   display: flex;
   align-items: center;
@@ -35,9 +39,11 @@ button {
   font-size: 12px;
   line-height: 1.33;
 }
+
 .modal__char-mb {
   margin-bottom: 20px;
 }
+
 .modal__char-name {
   width: 108px;
 
@@ -47,9 +53,11 @@ button {
 .modal__char-api {
   width: 250px;
 }
+
 .modal__char-api:last-child {
   margin-bottom: 0;
 }
+
 .modal__vote {
   padding: 1px 10px;
   border-radius: 8px;
@@ -65,6 +73,7 @@ button {
   line-height: 1.33;
   text-transform: uppercase;
 }
+
 .modal__about-text {
   margin-bottom: 20px;
 
@@ -72,11 +81,13 @@ button {
   font-size: 12px;
   line-height: 1.67;
 }
+
 .modal__btn-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
 .modal__btn {
   display: inline-flex;
   align-items: center;
@@ -97,14 +108,16 @@ button {
     border 250ms linear;
   border: 1px solid #000000;
 }
+
 .modal__btn:hover,
 .modal__btn:focus {
   background-color: #b92f2c;
   color: #fff;
   border: 1px solid #b92f2c;
 }
-.modal__btn-mr {
-}
+
+.modal__btn-mr {}
+
 .modal__close {
   display: flex;
   align-items: center;
@@ -133,10 +146,12 @@ button {
   .modal {
     width: 440px;
   }
+
   .modal__picture {
     min-width: 100%;
   }
 }
+
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .modal {
     display: flex;
@@ -145,13 +160,16 @@ button {
     width: 704px;
     height: 552px;
   }
+
   .modal__picture {
     min-width: 264px;
     height: 373px;
   }
+
   .modal__container-picture {
     margin-right: 64px;
   }
+
   .modal__char-api {
     width: 156px;
   }
@@ -159,10 +177,12 @@ button {
   .modal__btn-container {
     justify-content: space-between;
   }
+
   .modal__btn {
     padding: 12px 18px;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .modal {
     display: flex;
@@ -175,17 +195,21 @@ button {
     min-width: 375px;
     height: 478px;
   }
+
   .modal__container-picture {
     margin-right: 16px;
     width: 375px;
   }
+
   .modal__title {
     font-size: 30px;
     line-height: 1.17;
   }
+
   .modal__char-name {
     width: 152px;
   }
+
   .modal__char-api {
     width: 230px;
   }
@@ -193,10 +217,12 @@ button {
   .modal__btn-container {
     display: block;
   }
+
   .modal__btn {
     height: 42px;
     padding: 14px 24px;
   }
+
   .modal__btn-mr {
     margin-right: 8px;
   }
