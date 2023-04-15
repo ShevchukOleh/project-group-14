@@ -9,9 +9,8 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
-const IMAGE_SIZE = 'w200';
 
-const galleryEl = document.querySelector('.gallery');
+const moviesEl = document.querySelector('.films');
 const container = document.getElementById('tui-pagination-container');
 
 const instance = new Pagination(container, {
@@ -29,7 +28,7 @@ fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
     return renderGallery(results);
   })
   .then(res => {
-    return (galleryEl.innerHTML = res);
+    return (moviesEl.innerHTML = res);
   })
   .catch(console.log);
 
@@ -45,7 +44,7 @@ function handleTuiContainerClick(event) {
       return renderGallery(results);
     })
     .then(res => {
-      return (galleryEl.innerHTML = res);
+      return (moviesEl.innerHTML = res);
     })
     .catch(console.log);
 }
@@ -65,29 +64,26 @@ async function renderGallery(movies) {
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
           : 'Unknown';
-        const releaseDate = release_date ? release_date.slice(0, 4) : 'Unknoun';
+        const releaseYear = release_date ? release_date.slice(0, 4) : 'Unknoun';
         const poster = poster_path
-          ? `${BASE_IMAGE_URL}${IMAGE_SIZE}${poster_path}`
+          ? `${BASE_IMAGE_URL}w500${poster_path}`
           : NO_POSTER;
 
-        return `<div class="movie-card">
-      <img class="movie-poster"
-        src="${poster}" 
-        alt="${title}" 
-        loading="lazy" />
-      <div class="movie-info">
-      <p class="movie-title">
-      ${original_title}</p>
-      <p class="movie-genres">${checkGenres}</p>
-      <p class="movie-date">
-      ${releaseDate}</p>
-      </div>`;
+        return `<li class="films__item" >
+                  <div class="films__img">
+                    <img src=${poster} alt='Poster ${original_title}' loading='lazy' />
+                  </div>
+                  <div class="films__description">
+                    <p class="films__title">
+                      <b>${title.toUpperCase()}</b>
+                    </p>
+                    <div class="films__meta">
+                      <p class="films__genres">${checkGenres}</p>
+                      <p class="films__data">${releaseYear}</p>
+                    </div>
+                  </div>
+                </li>`;
       }
     )
     .join('');
 }
-
-
-
-
-
