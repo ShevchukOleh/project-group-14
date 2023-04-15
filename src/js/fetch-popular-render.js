@@ -60,6 +60,7 @@ async function renderGallery(movies) {
         title,
         original_title,
         release_date,
+        id,
       } = {}) => {
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
@@ -69,16 +70,16 @@ async function renderGallery(movies) {
           ? `${BASE_IMAGE_URL}w500${poster_path}`
           : NO_POSTER;
 
-        return `<li class="films__item" >
+        return `<li class="films__item" data-mvid='${id}'>
                   <div class="films__img">
-                    <img src=${poster} alt='Poster ${original_title}' loading='lazy' />
+                    <img src=${poster} alt='Poster ${original_title}'data-mvid='${id} loading='lazy' />
                   </div>
-                  <div class="films__description">
-                    <p class="films__title">
+                  <div class="films__description" data-mvid='${id}>
+                    <p class="films__title" data-mvid='${id}>
                       <b>${title.toUpperCase()}</b>
                     </p>
-                    <div class="films__meta">
-                      <p class="films__genres">${checkGenres}</p>
+                    <div class="films__meta"data-mvid='${id}>
+                      <p class="films__genres">${checkGenres} data-mvid='${id}</p>
                       <p class="films__data">${releaseYear}</p>
                     </div>
                   </div>

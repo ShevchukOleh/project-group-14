@@ -4,8 +4,8 @@ import handleModal from './functionHandleModal';
 
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
-const pEl = document.querySelector('.modal__about-text');
-pEl.addEventListener('click', largeMovieItem);
+const bodyEl = document.querySelector('.container-body');
+bodyEl.addEventListener('click', largeMovieItem);
 
 const Handlebars = require('handlebars');
 const template = Handlebars.compile(
@@ -14,16 +14,15 @@ const template = Handlebars.compile(
 
 async function largeMovieItem(event) {
   if (
-    event.target.nodeName != 'P'
-    // event.target.nodeName != 'A' &&
-    // event.target.nodeName != 'IMG' &&
-    // event.target.nodeName != 'P' &&
-    // event.target.nodeName != 'SPAN'
+    event.target.nodeName != 'LI' &&
+    event.target.nodeName != 'IMG' &&
+    event.target.nodeName != 'P' &&
+    event.target.nodeName != 'SPAN'
   ) {
     return;
   }
   const markup = await moviesApiService
-    .getMovieId(event.target.dataset.id)
+    .getMovieId(event.target.dataset.mvid)
     .then(
       ({
         genres,
