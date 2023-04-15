@@ -119,6 +119,7 @@ button {
 }
 
 .modal__btn-mr {
+  margin-bottom: 8px;
 }
 
 .modal__close {
@@ -231,7 +232,7 @@ button {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 767px) {
   .modal {
     overflow: scroll;
   }

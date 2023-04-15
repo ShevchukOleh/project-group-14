@@ -27,7 +27,6 @@ const template = Handlebars.compile(
         <button class='modal__btn modal__btn-mr' type='button' data-btn-type="modal-btn-watched" data-id={{id}}>ADD TO WATCHED</button>
         <button class='modal__btn' type='button' data-btn-type="modal-btn-queue" data-id={{id}}>ADD TO QUEUE</button>
       </div>
-      <button class='modal__close' type='button'><svg width='30' height='30'><use class='modal__close-icon' href='./symbol-defs.svg#icon-close_40px'></use></svg></button>
     </div>
   </div>`
 );
@@ -74,24 +73,44 @@ async function largeMovieItem(event) {
         const instance = basicLightbox.create(render);
 
         instance.show(() => {
-          initModalButtonsHandler()
+          initModalButtonsHandler();
+
+          const btnEl = document.querySelector('.modal__close');
+          btnEl.addEventListener('click', handleCloseModal);
+          function handleCloseModal() {
+            instance.close();
+          }
+
+          document.addEventListener('keydown', handleOutBackdrop);
+          function handleOutBackdrop(event) {
+            if (
+              event.key === 'Escape' ||
+              event.key === ' ' ||
+              event.key === 'Enter'
+            ) {
+              instance.close();
+            }
+            if (!basicLightbox.visible()) {
+              document.removeEventListener('keydown', handleOutBackdrop);
+              btnEl.removeEventListener('click', handleCloseModal);
+            }
+          }
         });
         const ref = {
           modal: document.querySelector('.basicLightbox__placeholder'),
         };
         ref.modal.addEventListener('click', handleModal);
+        ref.modal.insertAdjacentHTML(
+          'beforeend',
+          `
+		<button class="modal__close">
+			<svg class="modal__close-icon" width="30px" height="30px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+				<polygon points="340.2,160 255.8,244.3 171.8,160.4 160,172.2 244,256 160,339.9 171.8,351.6 255.8,267.8 340.2,352 352,340.3 267.6,256 352,171.8"></polygon>
+			</svg>
+		</button>
+	`
+        );
       }
     )
     .catch(er => console.log(er));
-
-  document.addEventListener('keydown', handleOutBackdrop);
-
-  function handleOutBackdrop(event) {
-    if (event.key === 'Escape' || event.key === ' ' || event.key === 'Enter') {
-      instance.close();
-    }
-    if (!basicLightbox.visible()) {
-      document.removeEventListener('keydown', handleOutBackdrop);
-    }
-  }
 }
