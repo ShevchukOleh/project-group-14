@@ -1,3 +1,6 @@
+.basicLightbox {
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .basicLightbox__placeholder {
   background-color: #fff;
   overflow: scroll;
@@ -116,7 +119,8 @@ button {
   border: 1px solid #b92f2c;
 }
 
-.modal__btn-mr {}
+.modal__btn-mr {
+}
 
 .modal__close {
   display: flex;
