@@ -2,19 +2,18 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
 const searchFormEl = document.querySelector('.nav__form');
-console.log(searchFormEl)
+console.log(searchFormEl);
 const inputEl = document.querySelector('.nav__input');
 const moviesEl = document.querySelector('.films');
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'c88bf135aa4e0b79b7c68835bd77599c';
 
-
 function setScrollToUp() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    })
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
 
 const state = {
@@ -78,19 +77,18 @@ searchFormEl.addEventListener('submit', e => {
   }
 
   fetchMoviesByQuery(query, page)
-  .then(res => {
-    const { results, total_pages } = res;
-    state.totalPages = total_pages;
+    .then(res => {
+      const { results, total_pages } = res;
+      state.totalPages = total_pages;
 
-    if (state.totalPages > 1) {
-      return renderGallery(results);
-    }
-  })
-  .then(res => {
-    moviesEl.innerHTML = res;
-    // moviesEl.insertAdjacentHTML('beforeend', res);
-  });
-
+      if (state.totalPages > 1) {
+        return renderGallery(results);
+      }
+    })
+    .then(res => {
+      moviesEl.innerHTML = res;
+      // moviesEl.insertAdjacentHTML('beforeend', res);
+    });
 
   fetchMoviesByQuery(query, page).then(data => {
     const total = data.total_results;
@@ -101,7 +99,7 @@ searchFormEl.addEventListener('submit', e => {
       page: 1,
     });
     pagination.on('afterMove', event => {
-        setScrollToUp()
+      setScrollToUp();
       const { page } = event;
       fetchMoviesByQuery(query, page)
         .then(res => {
@@ -132,6 +130,7 @@ async function renderGallery(movies) {
         release_date,
         genre_ids,
         original_title,
+        id,
       } = movies) => {
         const poster = poster_path
           ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -142,20 +141,20 @@ async function renderGallery(movies) {
         const checkGenres = genre_ids
           ? getGenres(genre_ids, genres)
           : 'Unknown';
-        return `
-            <li class="films__item" >
-    <div class="films__img">
-    <img src=${poster} alt='Poster ${original_title}' loading='lazy' />
-    </div>
-    <div class="films__description">
-      <p class="films__title">  <b>${title.toUpperCase()}</b>
-      </p>
-      <div class="films__meta">
-        <p class="films__genres">${checkGenres}</p>
-        <p class="films__data">${releaseYear}</p>
-      </div>
-    </div>
-  </li>`;
+        return `<li class="films__item" data-mvid='${id}'>
+                  <div class="films__img">
+                    <img src=${poster} alt='Poster ${original_title}'data-mvid='${id}' loading='lazy' />
+                  </div>
+                  <div class="films__description" data-mvid='${id}'>
+                    <p class="films__title" data-mvid='${id}'>
+                      <b data-mvid='${id}'>${title.toUpperCase()}</b>
+                    </p>
+                    <div class="films__meta" data-mvid='${id}'>
+                      <p class="films__genres" data-mvid='${id}'>${checkGenres}</p>
+                      <p class="films__data" data-mvid='${id}'>${releaseYear}</p>
+                    </div>
+                  </div>
+                </li>`;
       }
     )
     .join('');
