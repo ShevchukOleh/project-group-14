@@ -71,6 +71,8 @@
     background-color: #ffffff;
     border-radius: 100px;
     padding: 10px 26px;
+    transition: color .25s linear, background-color .25s linear, border .25s linear;
+    border: 1px solid black;
 
 
     @media screen and (min-width: 768px) {
@@ -86,6 +88,7 @@
 .nav__link-active {
     color: #fff;
     background-color: black;
+    border: 1px solid #ffffff;
 }
 
 .nav__link-library {
@@ -103,6 +106,7 @@
 .nav__link:is(:hover, :focus) {
     background-color: black;
     color: white;
+    border: 1px solid #ffffff;
 }
 
 .nav__input {
@@ -113,6 +117,7 @@
     background-color: #ffffff;
     outline: none;
     border: none;
+    transition: color .25s linear, background-color .25s linear, border .25s linear;
 
     @media screen and (min-width: 768px) {
         width: 165px;
@@ -257,7 +262,8 @@
     background-color: #ffffff;
     border-radius: 100px;
     padding: 10px 23px;
-    border: none;
+    border: 1px solid black;
+    transition: color .25s linear, background-color .25s linear, border .25s linear;
 
     @media screen and (min-width: 768px) {
         padding: 12px 23px;
