@@ -21,7 +21,7 @@ let pageNumber = 1;
 
 fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
   .then(data => {
-    const { page, results, total_pages } = data;
+    const { page, results, total_pages, total_results } = data;
     return renderGallery(results, API_KEY, BASE_URL);
   })
   .then(res => {
@@ -37,7 +37,7 @@ function handleTuiContainerClick(event) {
 
   fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
     .then(data => {
-      const { page, results, total_pages } = data;
+      const { page, results, total_pages, total_results } = data;
       return renderGallery(results, API_KEY, BASE_URL);
     })
     .then(res => {
