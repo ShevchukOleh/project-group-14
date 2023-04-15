@@ -14,11 +14,15 @@ const template = Handlebars.compile(
 
 async function largeMovieItem(event) {
   if (
+    event.target.nodeName != 'DIV' &&
     event.target.nodeName != 'LI' &&
     event.target.nodeName != 'IMG' &&
     event.target.nodeName != 'P' &&
-    event.target.nodeName != 'SPAN'
+    event.target.nodeName != 'B'
   ) {
+    return;
+  }
+  if (!event.target.dataset.mvid) {
     return;
   }
   const markup = await moviesApiService
