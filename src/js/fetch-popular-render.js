@@ -10,7 +10,7 @@ export const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
 const moviesEl = document.querySelector('.films');
 const container = document.getElementById('tui-pagination-container');
 
-const instance = new Pagination(container, {
+const pagination = new Pagination(container, {
   totalItems: 10000,
   itemsPerPage: 20,
   visiblePages: 5,
@@ -32,7 +32,7 @@ fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
 container.addEventListener('click', handleTuiContainerClick);
 
 function handleTuiContainerClick(event) {
-  pageNumber = instance.getCurrentPage();
+  pageNumber = pagination.getCurrentPage();
   setScrollToUp();
 
   fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
@@ -45,5 +45,3 @@ function handleTuiContainerClick(event) {
     })
     .catch(console.log);
 }
-
-
