@@ -2,9 +2,10 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
 const searchFormEl = document.querySelector('.nav__form');
-console.log(searchFormEl);
 const inputEl = document.querySelector('.nav__input');
 const moviesEl = document.querySelector('.films');
+const errorEl = document.querySelector('.header__error');
+const container = document.getElementById('tui-pagination-container');
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'c88bf135aa4e0b79b7c68835bd77599c';
@@ -67,57 +68,76 @@ async function fetchMoviesByQuery(query, page) {
 
 searchFormEl.addEventListener('submit', e => {
   e.preventDefault();
-  moviesEl.innerHTML = '';
 
   const query = inputEl.value;
   let page = 1;
 
-  if (inputEl.value.trim() === '') {
-    return console.log('порожній рядок');
-  }
+  fetchMoviesByQuery(query, page).then(res => {
+    const { results } = res;
+    state.results = results;
 
-  fetchMoviesByQuery(query, page)
-    .then(res => {
-      const { results, total_pages } = res;
-      state.totalPages = total_pages;
+    if (inputEl.value.trim() === '') {
+      errorEl.style.display = "block";
+      return;
+    }
 
-      if (state.totalPages > 1) {
-        return renderGallery(results);
-      }
-    })
-    .then(res => {
-      moviesEl.innerHTML = res;
-      // moviesEl.insertAdjacentHTML('beforeend', res);
-    });
+    if (state.results.length === 0) {
+      errorEl.style.display = "block";
+    return;
+    }
 
-  fetchMoviesByQuery(query, page).then(data => {
-    const total = data.total_results;
-    const pagination = new Pagination('pagination', {
-      totalItems: total,
-      itemsPerPage: 20,
-      visiblePages: 5,
-      page: 1,
-    });
-    pagination.on('afterMove', event => {
-      setScrollToUp();
-      const { page } = event;
+    if (inputEl.value.trim() ) {
+      errorEl.style.display = "none";
+      moviesEl.innerHTML = '';
+      container.style.display = 'none';
+
       fetchMoviesByQuery(query, page)
-        .then(res => {
-          const { results, total_pages } = res;
-          state.totalPages = total_pages;
-
-          if (state.totalPages > 1) {
-            return renderGallery(results);
-          }
-        })
-        .then(res => {
-          moviesEl.innerHTML = res;
-
-          // moviesEl.insertAdjacentHTML('beforeend', res);
-        });
-      console.log(page);
+      .then(res => {
+        const { results, total_pages } = res;
+        state.totalPages = total_pages;
+  
+        if (state.totalPages > 1) {
+          return renderGallery(results);
+        }
+      })
+      .then(res => {
+        moviesEl.innerHTML = res;
+      });
+  
+    fetchMoviesByQuery(query, page).then(data => {
+      const total = data.total_results;
+      const pagination = new Pagination('pagination', {
+        totalItems: total,
+        itemsPerPage: 20,
+        visiblePages: 5,
+        page: 1,
+      });
+      pagination.on('afterMove', event => {
+        setScrollToUp();
+        const { page } = event;
+        fetchMoviesByQuery(query, page)
+          .then(res => {
+            const { results, total_pages } = res;
+            state.totalPages = total_pages;
+  
+            if (state.totalPages > 1) {
+              return renderGallery(results);
+            }
+          })
+          .then(res => {
+            moviesEl.innerHTML = res;
+          });
+        console.log(page);
+      });
     });
+    }
+
+
+
   });
+
+  
+
 });
 
 async function renderGallery(movies) {
