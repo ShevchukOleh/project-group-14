@@ -5,8 +5,8 @@ import getGenres from './get-genres';
 import setScrollToUp from './set-scroll';
 import fetchGenres from './fetch-genres';
 
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
+export const BASE_URL = 'https://api.themoviedb.org/3/';
+export const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
 const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
 
