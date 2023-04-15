@@ -21,6 +21,12 @@ button {
   min-width: 100%;
   height: auto;
 }
+img[src*='hideme'] {
+  background-image: url(../images/img-plug.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 
 .modal__container-picture {
   margin-bottom: 20px;
