@@ -58,13 +58,17 @@ async function largeMovieItem(event) {
         title,
         id,
       }) => {
+        let imgPlug = poster_path
+          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+          : 'hideme';
+
         const info = {
           id: id,
           vote: vote_average,
           votes: vote_count,
           genres: genres.map(gener => ` ${gener.name}`),
           title: title || original_title,
-          img: `https://image.tmdb.org/t/p/w500${poster_path}`,
+          img: imgPlug,
           popularity: popularity,
           origin_title: original_title || title,
           about: overview,
