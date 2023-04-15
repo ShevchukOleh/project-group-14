@@ -1,19 +1,16 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.min.css';
 import fetchPopularMovies from './fetch-popular';
-import getGenres from './get-genres';
+import renderGallery from './render-gallery';
 import setScrollToUp from './set-scroll';
-import fetchGenres from './fetch-genres';
 
 export const BASE_URL = 'https://api.themoviedb.org/3/';
 export const API_KEY = '404ca53f902a08bf3140e0fd0ad0a560';
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
-const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
 
 const moviesEl = document.querySelector('.films');
 const container = document.getElementById('tui-pagination-container');
 
-const instance = new Pagination(container, {
+const pagination = new Pagination(container, {
   totalItems: 10000,
   itemsPerPage: 20,
   visiblePages: 5,
@@ -24,8 +21,8 @@ let pageNumber = 1;
 
 fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
   .then(data => {
-    const { page, results, total_pages } = data;
-    return renderGallery(results);
+    const { page, results, total_pages, total_results } = data;
+    return renderGallery(results, API_KEY, BASE_URL);
   })
   .then(res => {
     return (moviesEl.innerHTML = res);
@@ -35,56 +32,16 @@ fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
 container.addEventListener('click', handleTuiContainerClick);
 
 function handleTuiContainerClick(event) {
-  pageNumber = instance.getCurrentPage();
+  pageNumber = pagination.getCurrentPage();
   setScrollToUp();
 
   fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
     .then(data => {
-      const { page, results, total_pages } = data;
-      return renderGallery(results);
+      const { page, results, total_pages, total_results } = data;
+      return renderGallery(results, API_KEY, BASE_URL);
     })
     .then(res => {
       return (moviesEl.innerHTML = res);
     })
     .catch(console.log);
-}
-
-async function renderGallery(movies) {
-  const genres = await fetchGenres(API_KEY, BASE_URL);
-
-  return movies
-    .map(
-      ({
-        genre_ids,
-        poster_path,
-        title,
-        original_title,
-        release_date,
-        id,
-      } = {}) => {
-        const checkGenres = genre_ids
-          ? getGenres(genre_ids, genres)
-          : 'Unknown';
-        const releaseYear = release_date ? release_date.slice(0, 4) : 'Unknoun';
-        const poster = poster_path
-          ? `${BASE_IMAGE_URL}w500${poster_path}`
-          : NO_POSTER;
-
-        return `<li class="films__item" data-mvid='${id}'>
-                  <div class="films__img">
-                    <img src=${poster} alt='Poster ${original_title}'data-mvid='${id}' loading='lazy' />
-                  </div>
-                  <div class="films__description" data-mvid='${id}'>
-                    <p class="films__title" data-mvid='${id}'>
-                      <b data-mvid='${id}'>${title.toUpperCase()}</b>
-                    </p>
-                    <div class="films__meta" data-mvid='${id}'>
-                      <p class="films__genres" data-mvid='${id}'>${checkGenres}</p>
-                      <p class="films__data" data-mvid='${id}'>${releaseYear}</p>
-                    </div>
-                  </div>
-                </li>`;
-      }
-    )
-    .join('');
 }
