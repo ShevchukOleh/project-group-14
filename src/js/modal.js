@@ -60,18 +60,18 @@ async function largeMovieItem(event) {
       }) => {
         let imgPlug = poster_path
           ? `https://image.tmdb.org/t/p/w500${poster_path}`
-          : 'hideme';
+          : './images/img-plug.jpg';
 
         const info = {
           id: id,
-          vote: vote_average,
+          vote: Math.round(Number(vote_average) * 10) / 10,
           votes: vote_count,
           genres: genres.map(gener => ` ${gener.name}`),
           title: title || original_title,
           img: imgPlug,
-          popularity: popularity,
+          popularity: Math.round(Number(popularity) * 10) / 10,
           origin_title: original_title || title,
-          about: overview,
+          about: overview || 'Not found',
         };
         const render = template(info);
         const instance = basicLightbox.create(render);

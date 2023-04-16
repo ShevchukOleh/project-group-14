@@ -62,7 +62,7 @@ async function fetchMoviesByQuery(query, page) {
 
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
@@ -77,67 +77,61 @@ searchFormEl.addEventListener('submit', e => {
     state.results = results;
 
     if (inputEl.value.trim() === '') {
-      errorEl.style.display = "block";
+      errorEl.style.display = 'block';
       return;
     }
 
     if (state.results.length === 0) {
-      errorEl.style.display = "block";
-    return;
+      errorEl.style.display = 'block';
+      return;
     }
 
-    if (inputEl.value.trim() ) {
-      errorEl.style.display = "none";
+    if (inputEl.value.trim()) {
+      errorEl.style.display = 'none';
       moviesEl.innerHTML = '';
       container.style.display = 'none';
 
       fetchMoviesByQuery(query, page)
-      .then(res => {
-        const { results, total_pages } = res;
-        state.totalPages = total_pages;
-  
-        if (state.totalPages > 1) {
-          return renderGallery(results);
-        }
-      })
-      .then(res => {
-        moviesEl.innerHTML = res;
+        .then(res => {
+          const { results, total_pages } = res;
+          state.totalPages = total_pages;
+
+          if (state.totalPages > 1) {
+            return renderGallery(results);
+          }
+        })
+        .then(res => {
+          moviesEl.innerHTML = res;
+        });
+
+      fetchMoviesByQuery(query, page).then(data => {
+        const total = data.total_results;
+        const pagination = new Pagination('pagination', {
+          totalItems: total,
+          itemsPerPage: 20,
+          visiblePages: 5,
+          page: 1,
+        });
+        pagination.on('afterMove', event => {
+          setScrollToUp();
+          const { page } = event;
+          fetchMoviesByQuery(query, page)
+            .then(res => {
+              const { results, total_pages } = res;
+              state.totalPages = total_pages;
+
+              if (state.totalPages > 1) {
+                return renderGallery(results);
+              }
+            })
+            .then(res => {
+              moviesEl.innerHTML = res;
+            });
+          console.log(page);
+        });
       });
-  
-    fetchMoviesByQuery(query, page).then(data => {
-      const total = data.total_results;
-      const pagination = new Pagination('pagination', {
-        totalItems: total,
-        itemsPerPage: 20,
-        visiblePages: 5,
-        page: 1,
-      });
-      pagination.on('afterMove', event => {
-        setScrollToUp();
-        const { page } = event;
-        fetchMoviesByQuery(query, page)
-          .then(res => {
-            const { results, total_pages } = res;
-            state.totalPages = total_pages;
-  
-            if (state.totalPages > 1) {
-              return renderGallery(results);
-            }
-          })
-          .then(res => {
-            moviesEl.innerHTML = res;
-          });
-        console.log(page);
-      });
-    });
     }
-
-
-
   });
-
-  
-
 });
 
 async function renderGallery(movies) {
@@ -163,7 +157,7 @@ async function renderGallery(movies) {
           : 'Unknown';
         return `<li class="films__item" data-mvid='${id}'>
                   <div class="films__img">
-                    <img src=${poster} alt='Poster ${original_title}'data-mvid='${id}' loading='lazy' />
+                    <img src=${poster} alt='Poster ${original_title} 'data-mvid='${id}' loading='lazy' />
                   </div>
                   <div class="films__description" data-mvid='${id}'>
                     <p class="films__title" data-mvid='${id}'>

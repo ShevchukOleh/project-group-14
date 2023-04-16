@@ -2,7 +2,9 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 .basicLightbox__placeholder {
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border-radius: 20px;
 }
 
 button {
@@ -14,14 +16,15 @@ button {
   position: relative;
   padding: 48px 20px 40px 20px;
   min-width: 280px;
-  height: 90vh;
+  height: 398px;
+  overflow-x: scroll;
 }
 
 .modal__picture {
   min-width: 100%;
-  height: auto;
+  height: 398px;
 }
-img[src*='hideme'] {
+img[src*='./images/img-plug.jpg'] {
   background-image: url(../images/img-plug.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -108,7 +111,8 @@ img[src*='hideme'] {
   line-height: 1.17;
   text-transform: uppercase;
 
-  background-color: #fff;
+  background-color: rgba(80, 80, 80, 0.8);
+
   color: #b92f2c;
   border-radius: 21px;
 
@@ -147,7 +151,9 @@ img[src*='hideme'] {
 
   transition: fill 250ms linear;
 }
-
+.modal__close-icon {
+  fill: #fff;
+}
 .modal__close:hover .modal__close-icon {
   fill: #b92f2c;
 }
@@ -199,6 +205,7 @@ img[src*='hideme'] {
     padding: 40px 12px;
     width: 806px;
     height: 558px;
+    overflow: visible;
   }
 
   .modal__picture {
