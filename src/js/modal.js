@@ -60,7 +60,7 @@ async function largeMovieItem(event) {
       }) => {
         let imgPlug = poster_path
           ? `https://image.tmdb.org/t/p/w500${poster_path}`
-          : './images/img-plug.jpg';
+          : `${'#'} data-plug-img`;
 
         const info = {
           id: id,
