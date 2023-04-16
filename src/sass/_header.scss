@@ -1,6 +1,18 @@
+.header{
+    margin-bottom: 20px;
+
+    @media screen and (min-width: 768px) {
+        margin-bottom: 20px;
+    }
+    
+    @media screen and (min-width: 1280px) {
+        margin-bottom: 20px;
+    }
+}
+
 .header__section {
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 0;
     padding: 14px 14px 20px;
 
@@ -17,7 +29,7 @@
 
     @media screen and (min-width: 768px) {
         padding: 16px;
-
+        border-radius: 15px;
         background-image: url(/src/images/abstract-background-tablet1x.jpg);
 
         @media (min-device-pixel-ratio: 2),
