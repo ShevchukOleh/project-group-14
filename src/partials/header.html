@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container header__section">
     <nav class="nav">
-      <form action="submit" class="nav__form">
+      <form action="submit" class="nav__form nav__form-js">
         <div class="nav__form-search">
           <input
             type="text"
@@ -11,57 +11,34 @@
             class="nav__input js-input"
           />
           <button type="submit" class="nav__search">
-            <svg class="nav__icon" width="12" height="12">
-              <use href="#"></use>
+            <svg class="nav__icon" width="16" height="16">
+              <use href="./images/symbol-defs.svg#icon-search"></use>
             </svg>
           </button>
         </div>
       </form>
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="#" class="nav__link">HOME</a>
+          <a href="./index.html" class="nav__link nav__link-active">HOME</a>
         </li>
         <li class="nav__item">
-          <a href="#" class="nav__link"> MY LIBRARY </a>
+          <a href="./library.html" class="nav__link nav__link-library">
+            MY LIBRARY
+          </a>
         </li>
       </ul>
-
-      <!-- <ul class="watched__list">
-        <li class="watched__item">
-          <a class="watched__link" href="#">WATCHED</a>
-        </li>
-        <li class="watched__item">
-          <a class="watched__link" href="#">QUEUE</a>
-        </li>
-      </ul> -->
     </nav>
-    <form action="submit" class="nav__form-mobile">
-      <div class="nav__form-search">
-        <input
-          type="text"
-          name="serch_film"
-          autofocus
-          placeholder="Movie search"
-          class="nav__input js-input"
-        />
-        <button type="submit" class="nav__search">
-          <svg class="nav__icon" width="12" height="12">
-            <use href="#"></use>
-          </svg>
-        </button>
-      </div>
-    </form>
     <div class="logo">
-      <a href="#" class="logo__linj">
+      <a href="./index.html" class="logo__link">
         <svg class="logo__icon" width="24" height="24">
-          <use href="#"></use>
+          <use href="./images/symbol-defs.svg#icon-film"></use>
         </svg>
         <span class="logo__text">Filmoteka </span>
       </a>
     </div>
 
-    <!-- <p id="header__error-message" class="header__error">
-      Search result not successful. Enter the correct movie name and try again.
-    </p> -->
+    <p id="header__error-message" class="header__error">
+      Search result not successful. Enter the correct movie name.
+    </p>
   </div>
 </header>
