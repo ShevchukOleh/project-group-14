@@ -60,7 +60,7 @@ async function largeMovieItem(event) {
       }) => {
         let imgPlug = poster_path
           ? `https://image.tmdb.org/t/p/w500${poster_path}`
-          : `https://via.placeholder.com/200x80/FFFFFF/000000?text=Not+Found`;
+          : `https://via.placeholder.com/400x600/FFFFFF/000000?text=Not+Found`;
 
         const info = {
           id: id,
@@ -78,18 +78,31 @@ async function largeMovieItem(event) {
 
         instance.show(() => {
           initModalButtonsHandler();
-          const btnEl = document.querySelector('.modal__close');
-          const bodyElScroll = document.querySelector('body');
+          const ref = {
+            btnEl: document.querySelector('.modal__close'),
+            bodyElScroll: document.querySelector('body'),
+            basicLightboxEl: document.querySelector('.basicLightbox'),
+          };
+          ref.bodyElScroll.classList.add('no-scroll');
 
-          bodyElScroll.classList.add('no-scroll');
-          btnEl.addEventListener('click', handleCloseModal);
+          ref.basicLightboxEl.addEventListener('click', handleOutBackdropTwo);
+          function handleOutBackdropTwo(event) {
+            if (event.target.classList[0] === 'basicLightbox') {
+              instance.close(() => {
+                ref.bodyElScroll.classList.remove('no-scroll');
+              });
+            }
+          }
+
+          ref.btnEl.addEventListener('click', handleCloseModal);
           function handleCloseModal() {
             instance.close(() => {
-              bodyElScroll.classList.remove('no-scroll');
+              ref.bodyElScroll.classList.remove('no-scroll');
             });
           }
 
           document.addEventListener('keydown', handleOutBackdrop);
+
           function handleOutBackdrop(event) {
             if (
               event.key === 'Escape' ||
@@ -97,13 +110,12 @@ async function largeMovieItem(event) {
               event.key === 'Enter'
             ) {
               instance.close(() => {
-                const bodyElScroll = document.querySelector('body');
-                bodyElScroll.classList.remove('no-scroll');
+                ref.bodyElScroll.classList.remove('no-scroll');
               });
             }
             if (!basicLightbox.visible()) {
               document.removeEventListener('keydown', handleOutBackdrop);
-              btnEl.removeEventListener('click', handleCloseModal);
+              ref.btnEl.removeEventListener('click', handleCloseModal);
             }
           }
         });
