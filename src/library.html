@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page title</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css
+"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.css"
+      integrity="sha512-Y0MM+V6ymRKN2zStTqzQ227DWhhp4Mzdo6gnlRnuaNCbc+YN/ZH0sBCLTM4M0oSy9c9VKiCvd4Jk44aCLrNS5Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <script defer type="module" src="./index.js"></script>
+  </head>
+  <body class="scroll">
+    <!-- ❗️❗️❗️ Add partials like so for every page -->
+    <include src="./partials/spinner.html"></include>
+    <include src="../src/partials/header-library.html"></include>
+    <div class="gallery">
+      <!-- Картки зображень -->
+    </div>
+
+    <script src="./js/modal.js" type="module"></script>
+    <script src="./js/watched-queue-libery.js" type="module"></script>
+    <script type="module" src="./js/search-by-keyword.js"></script>
+  </body>
+</html>
