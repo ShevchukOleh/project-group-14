@@ -174,7 +174,8 @@ img[src*='./images/img-plug.jpg'] {
     justify-content: center;
     padding: 40px 72px 64px 40px;
     width: 704px;
-    height: 552px;
+    height: 95vh;
+    overflow: scroll;
   }
 
   .modal__picture {
