@@ -4,7 +4,7 @@ import { LOCAL_STORAGE_FIELDS_NAME } from "../constant/constant";
 import { getListOfFilm } from "./localStore";
 import { BASE_IMAGE_URL } from './render-gallery';
 
-refs = {
+const refs = {
   btnHeaderWatched: document.querySelector('button[data-watched]'),
   btnHeaderQueue: document.querySelector('button[data-queue]'),
   galleryContainer: document.querySelector('.library-films')
