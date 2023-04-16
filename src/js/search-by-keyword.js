@@ -9,6 +9,8 @@ const container = document.getElementById('tui-pagination-container');
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'c88bf135aa4e0b79b7c68835bd77599c';
+const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
+
 
 function setScrollToUp() {
   window.scrollTo({
@@ -148,7 +150,7 @@ async function renderGallery(movies) {
       } = movies) => {
         const poster = poster_path
           ? `https://image.tmdb.org/t/p/w500${poster_path}`
-          : 'NO_POSTER';
+          : NO_POSTER;
         const releaseYear = release_date
           ? release_date.split('-')[0]
           : 'Unknown';
