@@ -2,7 +2,7 @@ import getGenres from './get-genres';
 import fetchGenres from './fetch-genres';
 import movieCardTpl from './templates/template-movie-card.hbs';
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
+export const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
 
 export default async function renderGallery(movies, api_key, base_url) {
