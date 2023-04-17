@@ -2,6 +2,7 @@ import * as basicLightbox from 'basiclightbox';
 import '../sass/_modall.scss';
 import handleModal from './functionHandleModal';
 import { initModalButtonsHandler } from './modalControl';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
@@ -161,9 +162,17 @@ async function getTrailerKey(event) {
     return;
   }
   try {
+    const iconTrailer = document.querySelector('.modal__play');
+    console.log('iconTrailer: ', iconTrailer);
+
     const response = await moviesApiService.getMovieTrailerbyId(
       event.target.dataset.yid
     );
+    if (response.results.length === 0) {
+      iconTrailer.style = 'display: none';
+      Report.failure('Sorry, we dont found any trailer!');
+      return;
+    }
     const results = await response.results;
     const movieKey = await results[0].key;
     const instance = await basicLightbox.create(`
