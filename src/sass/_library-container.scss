@@ -31,6 +31,7 @@
         flex-wrap: wrap;
         margin-left: -32px;
         margin-bottom: -32px;
+        justify-content: flex-start;
     }
     @media screen and (min-width: 1280px) {
         margin-left: -16px;
@@ -38,7 +39,7 @@
 }
 
 .films__item {
-    margin: 0 auto;
+    
     width: 280px;    
     max-width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -61,11 +62,17 @@
             width: calc((100% - 64px) / 2);
             margin-left: 32px;
             margin-bottom: 32px;
+            &:last-child {
+                margin-right: auto;
+            }
           }
         
     @media screen and (min-width: 1280px) {
             width: calc((100% - 48px) / 3);
             margin-left: 16px;
+            &:last-child {
+                margin-right: auto;
+            }
           }    
 }
 .films__img {    
