@@ -35,6 +35,7 @@ button {
 // }
 
 .modal__container-picture {
+  position: relative;
   margin-bottom: 20px;
 }
 
@@ -176,7 +177,7 @@ button {
   transition: fill 250ms linear;
 }
 .modal__play-icon {
-  fill: #fff;
+  fill: rgba(100%, 100%, 100%, 0.7);
 }
 .modal__play:hover .modal__play-icon {
   fill: #b92f2c;
