@@ -32,10 +32,10 @@ export const addFilmToList = (fieldName, item) => {
     }
 }
 
-export const removeFromList = (fieldName, item) => {
+export const removeFromList = (fieldName, id) => {
     try {
         const list = JSON.parse(localStorage.getItem(fieldName));
-        const result = list.filter((existFil) => existFil.id === item.id);
+        const result = list.filter((existFilm) => existFilm.id !== id);
 
         localStorage.setItem(fieldName, JSON.stringify(result));
     } catch { }

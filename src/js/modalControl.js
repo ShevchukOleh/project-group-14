@@ -29,7 +29,6 @@ export const getButtonsState = (buttonEl, fieldName) => {
 const handleButtonClick = async (e, element, fieldName) => {
     const filmId = parseInt(element.dataset.id);
     const existFilm = getFilmFromList(fieldName, filmId);
-
     if (existFilm) {
         removeFromList(fieldName, filmId);
         getButtonsState(element, fieldName);

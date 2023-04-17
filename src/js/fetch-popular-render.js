@@ -29,7 +29,14 @@ fetchPopularMovies(API_KEY, BASE_URL, pageNumber)
   })
   .then(async res => {
     // container.style.display = 'block';
+<<<<<<< Updated upstream
     return moviesEl.innerHTML = res;
+=======
+    if(moviesEl) {
+
+        moviesEl.innerHTML = res
+    }
+>>>>>>> Stashed changes
   })
   .catch(console.log);
 
