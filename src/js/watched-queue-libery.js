@@ -52,7 +52,7 @@ function createGalleryCardMarkup(films) {
                       <p class="films__genres" data-mvid='${id}'>${getGenres(
         genres
       )}</p>
-                      <p class="films__data" data-mvid='${id}'>${release_date}</p>
+                      <p class="films__data" data-mvid='${id}'>${release_date.slice(0, 4)}</p>
                     </div>
                   </div>
                 </li>`;
