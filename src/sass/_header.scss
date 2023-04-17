@@ -1,13 +1,20 @@
-.header{
+.header {
     margin-bottom: 20px;
 
     @media screen and (min-width: 768px) {
         margin-bottom: 20px;
     }
-    
+
     @media screen and (min-width: 1280px) {
         margin-bottom: 20px;
     }
+}
+
+
+.check-input {
+    position: absolute;
+    top: 30px;
+    right: 20px;
 }
 
 .header__section {
