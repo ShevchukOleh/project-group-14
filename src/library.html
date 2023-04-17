@@ -23,15 +23,21 @@
     <link rel="stylesheet" href="./sass/index.scss" />
   </head>
   <body class="scroll">
-    <include src="./partials/spinner.html"></include>
-    <include src="../src/partials/header-library.html"></include>
-    <div class="gallery">
-      <!-- Картки зображень -->
-    </div>
-    <include src="../src/partials/library-container.html"></include>
-    <include src="./partials/pagination.html"></include>
-    <include src="./partials/footer.html"></include>
-
+    <header>
+      <include src="../src/partials/header-library.html"></include>
+    </header>
+    <main>
+      <include src="./partials/spinner.html"></include>
+      <div class="gallery">
+        <!-- Картки зображень -->
+      </div>
+      <include src="../src/partials/library-container.html"></include>
+      <include src="./partials/pagination.html"></include>
+    </main>
+    <footer>
+      <include src="./partials/footer.html"></include>
+    </footer>
+    
     <script type="module" src="./library.js"></script>
   </body>
 </html>
