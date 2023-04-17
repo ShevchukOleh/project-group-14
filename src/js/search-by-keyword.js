@@ -1,5 +1,6 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { spinnerOn, spinnerOff } from './spinner';
 
 const searchFormEl = document.querySelector('.nav__form');
 const inputEl = document.querySelector('.nav__input');
@@ -10,7 +11,6 @@ const container = document.getElementById('tui-pagination-container');
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'c88bf135aa4e0b79b7c68835bd77599c';
 const NO_POSTER = `https://i.ibb.co/r76r6Vt/oie-30214851-Ms-Wl-PTS0.png`;
-
 
 function setScrollToUp() {
   window.scrollTo({
@@ -70,7 +70,7 @@ async function fetchMoviesByQuery(query, page) {
 
 searchFormEl.addEventListener('submit', e => {
   e.preventDefault();
-
+  spinnerOn();
   const query = inputEl.value;
   let page = 1;
 
@@ -79,16 +79,19 @@ searchFormEl.addEventListener('submit', e => {
     state.results = results;
 
     if (inputEl.value.trim() === '') {
+      spinnerOff();
       errorEl.style.display = 'block';
       return;
     }
 
     if (state.results.length === 0) {
+      spinnerOff();
       errorEl.style.display = 'block';
       return;
     }
 
     if (inputEl.value.trim()) {
+      spinnerOff();
       errorEl.style.display = 'none';
       moviesEl.innerHTML = '';
       container.style.display = 'none';
@@ -99,11 +102,13 @@ searchFormEl.addEventListener('submit', e => {
           state.totalPages = total_pages;
 
           if (state.totalPages > 1) {
+            spinnerOff();
             return renderGallery(results);
           }
         })
         .then(res => {
           moviesEl.innerHTML = res;
+          spinnerOff();
         });
 
       fetchMoviesByQuery(query, page).then(data => {
@@ -129,7 +134,8 @@ searchFormEl.addEventListener('submit', e => {
             .then(res => {
               moviesEl.innerHTML = res;
             });
-          console.log(page);
+
+          // console.log(page);
         });
       });
     }
