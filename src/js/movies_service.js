@@ -41,7 +41,18 @@ export default class MoviesApiService {
       return response.json();
     });
   }
-
+  // Трейлер. Запит
+  async getMovieTrailerbyId(id) {
+    return fetch(
+      `${this.TMDB_API}movie/${id}/videos?api_key=${this.MY_TMDB_KEY}&language=en-US`
+    ).then(response => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      this.incrementPage();
+      return response.json();
+    });
+  }
   incrementPage() {
     this.pageTMDB += 1;
   }
