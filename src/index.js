@@ -1,2 +1,3 @@
-import './js/modalControl.js';
 import './js/spinner.js';
+import './js/modal.js';
+import './js/search-by-keyword.js'

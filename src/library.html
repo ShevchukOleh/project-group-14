@@ -21,21 +21,17 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script defer type="module" src="./index.js"></script>
   </head>
   <body class="scroll">
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/spinner.html"></include>
     <include src="../src/partials/header-library.html"></include>
-    <!-- <include src="./partials/pagination.html"></include> -->
     <div class="gallery">
       <!-- Картки зображень -->
     </div>
-    <script src="./js/watched-queue-libery.js" type="module"></script>
-
     <include src="../src/partials/library-container.html"></include>
-    <script src="./js/modal.js" type="module"></script>
-    <script type="module" src="./js/search-by-keyword.js"></script>
-    <script src="./js/fetch-popular-render.js" type="module"></script>
+    <include src="./partials/pagination.html"></include>
+    <include src="./partials/footer.html"></include>
+
+    <script type="module" src="./library.js"></script>
   </body>
 </html>

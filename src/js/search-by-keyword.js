@@ -165,7 +165,7 @@ async function renderGallery(movies) {
           : 'Unknown';
         return `<li class="films__item" data-mvid='${id}'>
                   <div class="films__img">
-                    <img src=${poster} alt='Poster ${original_title} 'data-mvid='${id}' loading='lazy' />
+                    <img src=${poster} alt='Poster ${original_title} ' data-mvid='${id}' loading='lazy' />
                   </div>
                   <div class="films__description" data-mvid='${id}'>
                     <p class="films__title" data-mvid='${id}'>
