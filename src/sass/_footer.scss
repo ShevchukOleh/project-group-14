@@ -62,6 +62,19 @@
     margin-right: 10px;
     display: block;
     fill: #B92F2C;
+    animation: beat 1s infinite ease-in-out;
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   
   .footer__modal {
