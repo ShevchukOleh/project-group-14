@@ -2,6 +2,7 @@ import * as basicLightbox from 'basiclightbox';
 import '../sass/_modall.scss';
 import handleModal from './functionHandleModal';
 import { initModalButtonsHandler } from './modalControl';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import MoviesApiService from './movies_service';
 const moviesApiService = new MoviesApiService();
@@ -45,7 +46,7 @@ async function largeMovieItem(event) {
     return;
   }
 
-  const markup = await moviesApiService
+  await moviesApiService
     .getMovieId(event.target.dataset.mvid)
     .then(
       ({
@@ -161,13 +162,24 @@ async function getTrailerKey(event) {
     return;
   }
   try {
+    const iconTrailer = document.querySelector('.modal__play');
+
     const response = await moviesApiService.getMovieTrailerbyId(
       event.target.dataset.yid
     );
+    if (response.results.length === 0) {
+      iconTrailer.style = 'display: none';
+      Report.failure('Sorry, we dont found any trailer!');
+      return;
+    }
     const results = await response.results;
     const movieKey = await results[0].key;
     const instance = await basicLightbox.create(`
-       <iframe src="https://www.youtube.com/embed/${movieKey}" width="1200" height="650" frameborder="0"></iframe>
+       <iframe class='modal__iframe' allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen" src="https://www.youtube.com/embed/${movieKey}" width="1200" height="650" frameborder="0"></iframe>
 `);
     instance.show();
   } catch (error) {
