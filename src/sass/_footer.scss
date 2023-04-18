@@ -7,13 +7,22 @@
     padding-bottom: 29px;
     text-align: center;    
     color: #545454;
-    background-color: inherit;    
+    background-color: inherit;   
+    // margin-top: 40px; 
     @media screen and (min-width: 768px) {
       height: 79px;
       padding-top: 30px;
       padding-bottom: 30px;
+      // margin-top: 60px;
     }
   }
+
+.footer-library {
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+      margin-top: 60px;
+    }
+}
   
   .footer__container {
     @media screen and (min-width: 768px) {
