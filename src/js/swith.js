@@ -1,13 +1,20 @@
 let check = document.querySelector('.check-input');
-check.addEventListener('change', checkboxClick);
 let bodyEL = document.querySelector('body');
-let colorEl = document.querySelector('.films__title');
-let tui = document.querySelectorAll('.tui-pagination');
-console.log(tui);
+let sunEL = document.querySelector('.header-icon-sun')
+let moonEl = document.querySelector('.header-icon-moon')
+let labelEL = document.querySelector('.check-lable')
+let footerEl = document.querySelector('.footer')
+
+
+check.addEventListener('change', checkboxClick);
+
+
 
 function checkboxClick() {
+  footerEl.classList.toggle('footer__text-theme')
+  labelEL.classList.toggle('icon-moon-dark')  
   bodyEL.classList.toggle('dark-theme');
-  console.log(colorEl);
-  colorEl.style.color = 'white';
-  tui.style.color = 'yellow';
+  sunEL.classList.toggle('visually-hidden')
+  moonEl.classList.toggle('visually-hidden')
+ 
 }

@@ -30,13 +30,21 @@
     </nav>
 
     <div class="check">
-      <input
+      <label class="check-lable">
+        <input
         class="check-input"
         type="checkbox"
         name="theme"
         id="check-theme"
         aria-label="Changed theme"
       />
+      <svg class="header-icon-sun" width = "11px" height ="12px">
+        <use href="/src/images/symbol-defs.svg#icon-sun"></use>
+      </svg>
+      <svg class="header-icon-moon visually-hidden icon-moon-dark" width = "10px" height ="10px">
+        <use href="/src/images/symbol-defs.svg#icon-moon"></use>
+      </svg>
+      </label>
     </div>
     <div class="logo">
       <a href="./index.html" class="logo__link">

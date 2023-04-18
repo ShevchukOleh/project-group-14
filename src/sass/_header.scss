@@ -1,4 +1,5 @@
 .header {
+   
     margin-bottom: 20px;
 
     @media screen and (min-width: 768px) {
@@ -12,10 +13,52 @@
 
 
 .check-input {
-    position: absolute;
-    top: 30px;
-    right: 20px;
+    width: 60px;
+    height: 30px;
+    top: 0px;
+    right: 0;
+    z-index: -100;
+    opacity: 0;
 }
+
+.check-lable {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    display: block;
+    width: 32px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50px;
+    transition: color .25s linear, border .25s linear;
+    border: 1px solid black; 
+}
+
+.icon-moon-dark {
+    background-color: rgb(32, 31, 31);
+    
+}
+
+
+.header-icon-sun {
+    position: absolute;
+    top: 1;
+    right: 18px;
+    fill: rgb(253, 152, 1);
+    
+    }
+    
+    .header-icon-moon {
+        position: absolute;
+        top: 2;
+        right: 2px;
+    fill: rgb(223, 220, 87);
+    }
+
+
+   
+
+
 
 .header__section {
     position: relative;
@@ -357,3 +400,10 @@
         left: 48px;
     }
 }
+
+
+
+
+
+
+
