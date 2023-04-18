@@ -173,7 +173,8 @@ async function getTrailerKey(event) {
       return;
     }
     const results = await response.results;
-    const movieKey = await results[0].key;
+    let randomFilm = Math.floor(Math.random() * results.length);
+    const movieKey = await results[randomFilm].key;
     const instance = await basicLightbox.create(`
        <iframe class='modal__iframe' allowfullscreen="allowfullscreen"
         mozallowfullscreen="mozallowfullscreen" 
