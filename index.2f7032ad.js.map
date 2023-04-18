@@ -1,0 +1,1 @@
+{"mappings":"oeAAAA,EAAA,S","sources":["src/index.js"],"sourcesContent":["import './js/spinner.js';\n\nimport './js/modal.js';\nimport './js/search-by-keyword.js';\nimport './js/swith.js';\nimport './js/modal-footer-team.js'"],"names":["parcelRequire"],"version":3,"file":"index.2f7032ad.js.map"}
