@@ -16,14 +16,21 @@ async function onBtnHeaderWathedClick(e) {
   spinnerOn();
   const listWatches = getListOfFilm(LOCAL_STORAGE_FIELDS_NAME.LIST_OF_WATCHES);
   const markup = await createGalleryCardMarkup(listWatches);
+
+  refs.btnHeaderWatched.classList.add('active')
+  refs.btnHeaderQueue.classList.remove('active')
   spinnerOff();
   return (refs.galleryContainer.innerHTML = markup);
 }
+setTimeout(()=> onBtnHeaderWathedClick(), 100);
 
 async function onBtnHeaderQueueClick(e) {
   spinnerOn();
   const listQueue = getListOfFilm(LOCAL_STORAGE_FIELDS_NAME.LIST_OF_QUEUE);
   const markup = await createGalleryCardMarkup(listQueue);
+
+  refs.btnHeaderWatched.classList.remove('active')
+  refs.btnHeaderQueue.classList.add('active')
   spinnerOff();
 
   return (refs.galleryContainer.innerHTML = markup);
