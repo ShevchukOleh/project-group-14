@@ -46,7 +46,7 @@ async function largeMovieItem(event) {
     return;
   }
 
-  const markup = await moviesApiService
+  await moviesApiService
     .getMovieId(event.target.dataset.mvid)
     .then(
       ({
@@ -163,7 +163,6 @@ async function getTrailerKey(event) {
   }
   try {
     const iconTrailer = document.querySelector('.modal__play');
-    console.log('iconTrailer: ', iconTrailer);
 
     const response = await moviesApiService.getMovieTrailerbyId(
       event.target.dataset.yid
@@ -176,7 +175,11 @@ async function getTrailerKey(event) {
     const results = await response.results;
     const movieKey = await results[0].key;
     const instance = await basicLightbox.create(`
-       <iframe src="https://www.youtube.com/embed/${movieKey}" width="1200" height="650" frameborder="0"></iframe>
+       <iframe class='modal__iframe' allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen" src="https://www.youtube.com/embed/${movieKey}" width="1200" height="650" frameborder="0"></iframe>
 `);
     instance.show();
   } catch (error) {
