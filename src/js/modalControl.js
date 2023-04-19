@@ -17,7 +17,7 @@ const fetchFilm = async (id) => {
 
 export const getButtonsState = (buttonEl, fieldName) => {
     const filmId = parseInt(buttonEl.dataset.id);
-    const existFilm = getFilmFromList(fieldName, filmId)
+    const existFilm = getFilmFromList(fieldName, filmId);
 
     if (existFilm) {
         buttonEl.innerHTML = fieldName === LOCAL_STORAGE_FIELDS_NAME.LIST_OF_WATCHES ? 'Remove from watched' : 'Remove from queue';
