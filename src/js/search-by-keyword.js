@@ -96,47 +96,41 @@ searchFormEl.addEventListener('submit', e => {
       moviesEl.innerHTML = '';
       container.style.display = 'none';
 
-      fetchMoviesByQuery(query, page)
-        .then(res => {
-          const { results, total_pages } = res;
-          state.totalPages = total_pages;
+      const { results, total_pages } = res;
+      state.totalPages = total_pages;
 
-          if (state.totalPages > 1) {
-            spinnerOff();
-            return renderGallery(results);
-          }
-        })
-        .then(res => {
+      if (state.totalPages > 1) {
+        spinnerOff();
+        const res = renderGallery(results).then(res => {
           moviesEl.innerHTML = res;
           spinnerOff();
         });
+        moviesEl.innerHTML = res;
+        spinnerOff();
+      }
 
-      fetchMoviesByQuery(query, page).then(data => {
-        const total = data.total_results;
-        const pagination = new Pagination('pagination', {
-          totalItems: total,
-          itemsPerPage: 20,
-          visiblePages: 5,
-          page: 1,
-        });
-        pagination.on('afterMove', event => {
-          setScrollToUp();
-          const { page } = event;
-          fetchMoviesByQuery(query, page)
-            .then(res => {
-              const { results, total_pages } = res;
-              state.totalPages = total_pages;
+      const total = res.total_results;
+      const pagination = new Pagination('pagination', {
+        totalItems: total,
+        itemsPerPage: 20,
+        visiblePages: 5,
+        page: 1,
+      });
+      pagination.on('afterMove', event => {
+        setScrollToUp();
+        const { page } = event;
+        fetchMoviesByQuery(query, page)
+          .then(res => {
+            const { results, total_pages } = res;
+            state.totalPages = total_pages;
 
-              if (state.totalPages > 1) {
-                return renderGallery(results);
-              }
-            })
-            .then(res => {
-              moviesEl.innerHTML = res;
-            });
-
-          // console.log(page);
-        });
+            if (state.totalPages > 1) {
+              return renderGallery(results);
+            }
+          })
+          .then(res => {
+            moviesEl.innerHTML = res;
+          });
       });
     }
   });
