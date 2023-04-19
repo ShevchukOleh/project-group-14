@@ -19,6 +19,31 @@ export const getButtonsState = (buttonEl, fieldName) => {
     const filmId = parseInt(buttonEl.dataset.id);
     const existFilm = getFilmFromList(fieldName, filmId);
 
+    const libraryBtn = document.querySelector('.watched__list')
+
+    if (libraryBtn) {
+        const watchedBtn = libraryBtn.querySelector('.watched__link')
+        const queueBtn = libraryBtn.querySelector('.watched__link-queue')
+
+        if (fieldName === 'listOfWatches') {
+            if (watchedBtn.classList.contains('active')) { 
+                buttonEl.style.display = 'inline-flex'
+            } else {
+                buttonEl.style.display = 'none'
+            }
+        } 
+
+        if (fieldName === 'listOfQueue') {
+            if ( queueBtn.classList.contains('active')) {
+                buttonEl.style.display = 'inline-flex'
+            }else {
+                buttonEl.style.display = 'none'
+            }
+            
+        } 
+    }
+    
+
     if (existFilm) {
         buttonEl.innerHTML = fieldName === LOCAL_STORAGE_FIELDS_NAME.LIST_OF_WATCHES ? 'Remove from watched' : 'Remove from queue';
     } else {
