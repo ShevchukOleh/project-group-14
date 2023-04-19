@@ -47,6 +47,7 @@ export const removeFromList = (fieldName, id) => {
     try {
         const list = JSON.parse(localStorage.getItem(fieldName));
         const result = list.filter((existFilm) => existFilm.id !== id);
+
         const filmElement = document.querySelector(`.library-films`);
 
         if(filmElement) {
