@@ -32,22 +32,11 @@ export const addFilmToList = (fieldName, item) => {
     }
 }
 
-// export const removeFromList = (fieldName, id) => {
-//     try {
-//         const list = JSON.parse(localStorage.getItem(fieldName));
-//         const result = list.filter((existFilm) => existFilm.id !== id);
-
-//         localStorage.setItem(fieldName, JSON.stringify(result));
-//     } catch { }
-// }
 export const removeFromList = (fieldName, id) => {
     try {
         const list = JSON.parse(localStorage.getItem(fieldName));
-        const indexToRemove = list.findIndex((existFilm) => existFilm.id === id); // Find the index of the film to remove
-        if (indexToRemove !== -1) {
-            list.splice(indexToRemove, 1); // Remove the film from the list
-        }
+        const result = list.filter((existFilm) => existFilm.id !== id);
 
-        localStorage.setItem(fieldName, JSON.stringify(list));
+        localStorage.setItem(fieldName, JSON.stringify(result));
     } catch { }
 }
