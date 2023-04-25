@@ -15,24 +15,35 @@ refs.btnHeaderQueue.addEventListener('click', onBtnHeaderQueueClick);
 async function onBtnHeaderWathedClick(e) {
   spinnerOn();
   const listWatches = getListOfFilm(LOCAL_STORAGE_FIELDS_NAME.LIST_OF_WATCHES);
+
   const markup = await createGalleryCardMarkup(listWatches);
 
-  refs.btnHeaderWatched.classList.add('active')
-  refs.btnHeaderQueue.classList.remove('active')
+  refs.btnHeaderWatched.classList.add('active');
+  refs.btnHeaderQueue.classList.remove('active');
   spinnerOff();
+  if (listWatches.length === 0) {
+    refs.galleryContainer.innerHTML =
+      '`<li style="color: #b92f2c;margin-left: auto; margin-right: auto;">Your list empty! Add any films!</li>`';
+    return;
+  }
   return (refs.galleryContainer.innerHTML = markup);
 }
-setTimeout(()=> onBtnHeaderWathedClick(), 100);
+setTimeout(() => onBtnHeaderWathedClick(), 100);
 
 async function onBtnHeaderQueueClick(e) {
   spinnerOn();
   const listQueue = getListOfFilm(LOCAL_STORAGE_FIELDS_NAME.LIST_OF_QUEUE);
   const markup = await createGalleryCardMarkup(listQueue);
 
-  refs.btnHeaderWatched.classList.remove('active')
-  refs.btnHeaderQueue.classList.add('active')
+  refs.btnHeaderWatched.classList.remove('active');
+  refs.btnHeaderQueue.classList.add('active');
   spinnerOff();
 
+  if (listQueue.length === 0) {
+    refs.galleryContainer.innerHTML =
+      '`<li style="color: #b92f2c;margin-left: auto; margin-right: auto;">Your list empty! Add any films!</li>`';
+    return;
+  }
   return (refs.galleryContainer.innerHTML = markup);
 }
 
@@ -59,7 +70,10 @@ function createGalleryCardMarkup(films) {
                       <p class="films__genres" data-mvid='${id}'>${getGenres(
         genres
       )}</p>
-                      <p class="films__data" data-mvid='${id}'>${release_date.slice(0, 4)}</p>
+                      <p class="films__data" data-mvid='${id}'>${release_date.slice(
+        0,
+        4
+      )}</p>
                     </div>
                   </div>
                 </li>`;
