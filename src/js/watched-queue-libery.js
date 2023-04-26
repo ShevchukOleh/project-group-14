@@ -23,7 +23,7 @@ async function onBtnHeaderWathedClick(e) {
   spinnerOff();
   if (listWatches.length === 0) {
     refs.galleryContainer.innerHTML =
-      '`<li style="color: #b92f2c;margin-left: auto; margin-right: auto;">Your list empty! Add any films!</li>`';
+      '<li style="color: #b92f2c;margin-left: auto; margin-right: auto; text-align: center">Your list empty! Add any films!</li>';
     return;
   }
   return (refs.galleryContainer.innerHTML = markup);
@@ -41,7 +41,7 @@ async function onBtnHeaderQueueClick(e) {
 
   if (listQueue.length === 0) {
     refs.galleryContainer.innerHTML =
-      '<li style="color: #b92f2c;margin-left: auto; margin-right: auto;">Your list empty! Add any films!</li>';
+      '<li style="color: #b92f2c;margin-left: auto; margin-right: auto; text-align: center">Your list empty! Add any films!</li>';
     return;
   }
   return (refs.galleryContainer.innerHTML = markup);
